@@ -1,0 +1,87 @@
+/*2. Write a program that takes in 50 values and prints out the highest, 
+the lowest, the average and then all 50 input values, one per line.*/
+
+
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <time.h>
+
+
+
+using namespace std;
+void display_Array(int num[], int size);
+void display_sort_array(int num[], int size);
+
+int value_gen(){            /////Generador de numero random
+	int x= 1+rand()%(50-1);
+	return x;
+}
+
+void crea_matriz(){
+	int size=50;
+	int num[50]={};
+
+	for(int i=0;i<size;i++){
+		num[i]=value_gen();
+		cout<<num[i]<<" ";
+	}
+	cout<<endl;
+	display_Array(num,size);
+	display_sort_array(num,size);
+	   
+}
+
+void display_Array(int num[], int size){
+	cout<<"Raw Array";
+	for(int i=0;i<size;i++){
+		cout<<num[i]<<endl;
+	}
+
+
+}
+
+void display_sort_array(int num[], int size){
+	int mayor=0;
+	int menor=num[0];
+	int average=0;
+	int sum=0;
+	int prom;
+
+	for(int i=0;i<size;i++){
+		for(int j=0;j<size;j++){
+			if(mayor<num[i]){
+				mayor=num[i];
+			}
+		}
+	}
+
+	for(int i=0;i<size;i++){
+		for(int j=0;j<size;j++){
+			if(menor>num[i]){
+				menor=num[i];
+			}
+		}
+	}
+
+	for(int i=0;i<size;i++){
+		for(int j=0;j<size;j++){
+			sum=sum+num[i];
+			
+			
+		}
+	}
+	prom=(sum/size);
+
+	cout<<"El valor menor es: "<<menor<<", el promedio es: "<<prom<<", el numero mayor es: "<<mayor<<endl;
+	cin.get();
+}
+
+
+
+
+int main()
+{
+	crea_matriz();
+	cin.get();
+}
