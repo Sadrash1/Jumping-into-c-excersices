@@ -1,0 +1,36 @@
+/*Write a program that lets the user fill in a single structure with the name, address, and phone number of a single person*/
+
+
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <winsock2.h>
+
+using namespace std;
+
+struct person_info{
+	string name;
+	string address;
+	string phone;
+};
+
+
+void enter_info(){
+
+	person_info person;
+
+	cout<<"Enter name: ";
+	cin>>person.name;
+	cout<<"Enter address: ";
+	cin>>person.address;
+	cout<<"Enter phone: ";
+	cin>>person.phone;
+
+	cout<<endl<<"***************************"<<endl;
+	cout<<person.name<<endl;
+	cout<<person.address<<endl;
+	cout<<person.phone<<endl;
+	
+	cin.get();
+
+}
