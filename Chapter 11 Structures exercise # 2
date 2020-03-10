@@ -1,0 +1,71 @@
+/*Create an array of space ship objects and write a program that continually updates their positions until they all go off the screen.
+Assume that the size of the screen is 1024 pixels by 768 pixels.*/
+
+
+
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <winsock2.h>
+
+using namespace std;
+
+
+struct SpaceShip{
+
+	int x_coor;
+	int y_coor;
+	bool there;
+
+};
+
+SpaceShip updatePos(SpaceShip ship){
+	 
+
+	 ship.x_coor+=100;
+	 ship.y_coor+=100;
+	 return ship;
+
+
+}
+
+void naves(){
+
+	const int numNave=3;
+
+	SpaceShip nave[numNave];
+
+	int numNaves= numNave;
+
+	cout<<"Number of ships on screen: "<<numNave<<".";
+
+	for(int i=0;i<numNave;i++){
+		nave[i].x_coor=rand()%1024;
+		nave[i].y_coor=rand()%786;
+		nave[i].there= true;
+
+	}
+
+	do{
+
+		for(int i=0;i<=numNaves;i++){
+
+		
+			if(nave[i].there==true){
+			nave[i]=updatePos(nave[i]);
+			cout<<"\nNave("<<i+1<<"): "<<"Pos "<<"["<<nave[i].x_coor<<"]"<<"["<<nave[i].y_coor<<"]";
+
+			if(nave[i].x_coor>1024||nave[i].y_coor>768){
+				--numNaves;
+				nave[i].there=false;
+				cout<<"<--- Ship out";
+				cout<<"\nNumber of ships on screen: "<<numNaves<<".";
+				
+			}
+
+		}
+		}
+	}while(numNaves>0);
+
+
+}
