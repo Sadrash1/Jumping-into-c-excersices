@@ -1,0 +1,134 @@
+/*Write a program that allows a user to enter high scores of a game, keeping tracking of the name of the user and the score. 
+Add the ability to show the highest score for each user,
+all scores for a particular user, all scores from all users, and the list of users.*/
+
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <winsock2.h>
+
+using namespace std;
+
+
+struct P_info{
+	string name;
+	int score[3];
+};
+
+
+
+void menu(){
+	
+	int op=0;
+	int const p_s=3;
+	int const np=3;
+	string name;
+	string name2;
+	bool case1=false;
+	bool case2=false;
+	
+
+	P_info player[np];
+
+	int mayor=0;
+
+	for(int i=0;i<np;i++){
+	cout<<"Enter Player name.   ";
+	cin>> player[i].name;
+	cout<<"Enter 3 scores.   "; 
+	for(int j=0;j<p_s;j++){
+		cin>>player[i].score[j];
+	}
+	}
+
+
+	while(op!=5){
+	cout<<"--------------------------------------"<<endl;
+	cout<<"-----------------MENU-----------------"<<endl;
+	cout<<"1.-Search for a Player"<<endl;
+	cout<<"2.-Search for the highest score from Player."<<endl;
+	cout<<"3.-All Playeres and scores."<<endl;
+	cout<<"4.-List of Players."<<endl;
+	cout<<"5.-Exit."<<endl;
+	cin>>op;
+	switch (op){
+	case 1:
+		cout<<"Player name.";
+		cin>>name;
+		for(int i=0;i<3;i++){
+			if(name==player[i].name){
+				cout<<player[i].name<<endl;
+					cout<<"Scores:"<<endl;
+					for(int j=0;j<3;j++){
+						cout<<player[i].score[j]<<endl;
+						case1=true;
+						
+					}
+			}
+		}
+		cout<<endl<<endl;
+
+		if(case1==false){
+			cout<<"Player not found"<<endl<<endl;
+		}
+		break;
+		
+
+	case 2:
+		cout<<"Player name.";
+		cin>>name;
+		for(int i=0;i<3;i++){
+			if(name==player[i].name){
+				name2=player[i].name;
+				for(int j=0;j<3;j++){
+					if(player[i].score[j]>mayor){
+						mayor=player[i].score[j];
+						case2= true;
+						
+					}
+				
+				}
+			}
+		}
+		if (case2==false){
+			cout<<"Player not found"<<endl<<endl;
+		
+		}else{
+		
+		cout<<"\nBest score from Player "<<name2<<" is "<<mayor<<endl<<endl;
+	}
+		break;
+
+	case 3:
+		for(int i=0;i<3;i++){
+			for(int i=0;i<3;i++){
+				cout<<"Player name:"<<endl;
+				cout<<player[i].name<<endl;
+				cout<<"Score:"<<endl;
+				for(int j=0;j<3;j++){
+					cout<<player[i].score[j]<<endl;
+				}
+			}
+		}
+		break;
+		
+		
+		
+		
+	case 4:
+		cout<<"List of Players: "<<endl;
+		for(int i=0;i<3;i++){
+			cout<<player[i].name<<endl;
+		}
+		cout<<endl<<endl;
+		break;
+		
+	default:
+		cout<<"Invalid option."<<endl<<endl;
+
+
+	}
+	}
+	 
+ 
+}
