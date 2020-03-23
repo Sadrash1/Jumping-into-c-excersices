@@ -1,0 +1,160 @@
+/*PRACTICE PROBLEMS page 147*/
+/*1. Write a function that prompts the user to enter his or her first name and last name, as two separate values. 
+This function should return both values to the caller via additional pointer (or reference) parameters that are passed to the function. 
+Try doing this first with pointers and then with references. 
+(Hint: the function signature will look similar to the swap function from earlier!)*/
+
+#include "stdafx.h"
+#include <iostream> 
+#include <string>
+#include <iomanip>
+
+
+using namespace std;  
+
+
+void pp_ask_name(string *nombre,string *apellido){
+	string temp= *nombre;
+	*nombre = *apellido;
+	*apellido = temp;
+}
+void p_ask_name(){
+	string name;
+	string last;
+
+	cout<<"Enter name"<<endl;
+	cin>> name;
+	cout<<"Enter lastname"<<endl;
+	cin>> last;
+	cout<<endl;
+
+	pp_ask_name(&name,&last);
+	cout<<"El nombre es "<<last<<" el apellido es "<<name;
+	cin.get();
+
+}
+
+void refref_ask_name(string& name, string& last){
+	string temp= name;
+	name = last;
+	name = temp;
+}
+
+void ref_ask_name(){
+
+	string name;
+	string &refn = name; 
+	string last;
+	string &refl= last;
+
+	cout<<"Enter name"<<endl;
+	cin>> name;
+	cout<<"Enter lastname"<<endl;
+	cin>> last;
+	cout<<endl;
+
+	pp_ask_name(&refn,&refl);
+	cout<<"El nombre es "<<&refl<<" el apellido es "<<&refn;
+	cin.get();
+}
+
+
+
+/*3. Modify the program you wrote for exercise 1 so that instead of always prompting the user for a last name,
+it does so only if the caller passes in a NULL pointer for the last name.*/
+
+void null_pp_ask_name(string *nombre,string *apellido){
+	//apellido = NULL;
+
+	if(apellido == NULL){
+		cout<<"Enter lastname";
+		cin>>*apellido;
+	}else{
+		*apellido = "";
+	}
+	string temp= *nombre;
+	*nombre = *apellido;
+	*apellido = temp;
+}
+
+void null_p_ask_name(){
+	string name="";
+	string last="";
+
+	cout<<"Enter name"<<endl;
+	cin>> name;
+	/*cout<<"Enter lastname"<<endl;
+	cin>> last;*/
+	cout<<endl;
+
+	pp_ask_name(&name,&last);
+	cout<<"El nombre es "<<last<<" el apellido es "<<name;
+	cin.get();
+
+}
+
+
+
+/*4. Write a function that takes two input arguments and provides two separate results to the caller, 
+one that is the result of multiplying the two arguments, the other the result of adding them. 
+Since you can directly return only one value from a function, you'll need the second value to be 
+returned through a pointer or reference parameter.*/
+
+int make_op(int x,int y, int *mult){
+	int sum,multi;
+
+	sum=x+y;
+	*mult=x*y;
+	return sum;
+
+
+}
+
+
+void send_val(){
+	int x,y;
+	int mult=0,sum=0;
+	cout<<"Enter the first value: ";
+	cin>>x;
+	cout<<"Enter the second value: ";
+	cin>>y;
+	sum=make_op(x,y,&mult);
+
+	cout<<"The sum is: "<<sum<<"The multiply is: "<<mult;
+	cin.get();
+}
+
+
+/*5. Write a program that compares the memory addresses of two different variables on the stack 
+and prints out the order of the variables by numerical order of their addresses. Does the order surprise you?*/
+
+void numeric_values(){
+	int n=1;
+	int m=2;
+	int *p_n=&n;
+	int *p_m=&m;
+	int dec_n;
+
+	
+
+	cout<<"n "<<&p_n<<"hex"<<endl;
+	cout<<"m "<<&p_m<<"hex"<<endl;
+
+	if(&p_n>&p_m){
+		cout<<"numerical order: "<<endl;
+		cout<<"n: "<<&p_n<<endl;
+		cout<<"m: "<<&p_m<<endl;
+	}else{
+		cout<<"numerical order: "<<endl;
+		cout<<"m: "<<&p_m<<endl;
+		cout<<"n: "<<&p_n<<endl;
+	}
+	cin.get();
+
+
+
+}
+
+int main(){
+return 0;
+}
